@@ -53,5 +53,17 @@ public class ArrayReduceUtils {
         return maxElement.get().second();
     }
 
+    public int calculateChecksum(int[] array) {
+        AtomicInteger checksum = new AtomicInteger();
+
+        Arrays.stream(array)
+            .parallel()
+            .forEach(element ->
+                checksum.accumulateAndGet(element,
+                    (sum, nextElement) -> sum ^ nextElement)
+            );
+
+        return checksum.get();
+    }
 
 }

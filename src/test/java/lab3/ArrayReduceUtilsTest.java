@@ -78,4 +78,26 @@ public class ArrayReduceUtilsTest {
 
         Assert.assertEquals(0, utils.max(integers));
     }
+
+    @Test
+    public void testCalculateChecksumAllEquals() {
+        int size = 1000000;
+        int[] integers = new int[size];
+        Arrays.fill(integers, 1);
+
+        ArrayReduceUtils utils = new ArrayReduceUtils(null);
+
+        Assert.assertEquals(0, utils.calculateChecksum(integers));
+    }
+
+    @Test
+    public void testCalculateChecksumHalvesHasSameValues() {
+        int size = 1000000;
+        int[] integers = new int[size];
+        Arrays.fill(integers, 0, size/2, 1);
+
+        ArrayReduceUtils utils = new ArrayReduceUtils(null);
+
+        Assert.assertEquals(0, utils.calculateChecksum(integers));
+    }
 }
