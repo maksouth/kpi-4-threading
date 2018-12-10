@@ -1,0 +1,73 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="color">
+        <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:enumeration value="green"/>
+                <xs:enumeration value="red"/>
+                <xs:enumeration value="blue"/>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:element>
+    <xs:element name="opacity">
+        <xs:simpleType>
+            <xs:restriction base="xs:integer">
+                <xs:minInclusive value="0"/>
+                <xs:maxInclusive value="100"/>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:element>
+    <xs:element name="faces">
+        <xs:simpleType>
+            <xs:restriction base="xs:integer">
+                <xs:minInclusive value="4"/>
+                <xs:maxInclusive value="15"/>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:element>
+    <xs:element name="name" type="xs:string"/>
+    <xs:element name="preciousness">
+        <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:enumeration value="precious"/>
+                <xs:enumeration value="non-precious"/>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:element>
+
+    <xs:element name="origin" type="xs:string"/>
+    <xs:element name="visual_parameters">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="color"/>
+                <xs:element ref="opacity"/>
+                <xs:element ref="faces"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="value">
+        <xs:simpleType>
+            <xs:restriction base="xs:integer">
+                <xs:minExclusive value="0"/>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:element>
+    <xs:element name="gem">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="name"/>
+                <xs:element ref="preciousness"/>
+                <xs:element ref="origin"/>
+                <xs:element ref="visual_parameters"/>
+                <xs:element ref="value"/>
+            </xs:sequence>
+            <xs:attribute type="xs:ID" name="id" use="required"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="gem_collection">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="gem" maxOccurs="unbounded" minOccurs="0"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
